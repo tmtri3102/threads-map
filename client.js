@@ -36,10 +36,18 @@ fetch("/api/locations")
         card.style.zIndex = "1000";
         card.innerHTML = `
     <h2 style="margin: 0; color: black;">${loc.title}</h2>
-    <p style="margin: 5px 0; color: gray;">${loc.desc}</p>
+    <p id="description" style="margin: 5px 0; color: gray;">${loc.desc}</p>
+    <button id="play-audio" style="margin-top: 10px; padding: 10px; background-color: blue; color: white; border: none; cursor: pointer;">Play Audio</button>
     <button id="close-card" style="margin-top: 10px; padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">Close</button>
   `;
 
+        // Add event listener to play audio
+        document.getElementById("play-audio").addEventListener("click", () => {
+          const description =
+            document.getElementById("description").textContent;
+          const utterance = new SpeechSynthesisUtterance(description);
+          speechSynthesis.speak(utterance);
+        });
         // Add event listener to close the card
         document.getElementById("close-card").addEventListener("click", () => {
           card.style.display = "none"; // Hide the card
