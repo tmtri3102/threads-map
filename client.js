@@ -1,12 +1,11 @@
-mapboxgl.accessToken =
-  "pk.eyJ1IjoidG9tdHJhbjMxMDI1MSIsImEiOiJjbG9yMHV1OGEwcDQ4MmtwNWJoajRjcXpkIn0.PHh2-htUMRaNpOzOxcx92w";
+const map = L.map("map").setView([21.0285, 105.8542], 15); // lat, lng, zoom
 
-const map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
-  center: [-74.5, 40], // longitude, latitude
-  zoom: 9,
-});
+// Add OpenStreetMap tile layer
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 18,
+  minZoom: 15,
+  attribution: "&copy; OpenStreetMap contributors",
+}).addTo(map);
 
-// Add zoom and rotation controls
-map.addControl(new mapboxgl.NavigationControl());
+L.marker([21.0307, 105.8544]).addTo(map).bindPopup("Marker 1: Hoàn Kiếm Lake");
+L.marker([21.0356, 105.8499]).addTo(map).bindPopup("Marker 2: Old Quarter");
