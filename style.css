@@ -10,6 +10,7 @@ html {
   position: relative;
   height: 100%;
 }
+
 .search {
   position: absolute;
   top: 20px;
@@ -17,11 +18,11 @@ html {
   transform: translateX(-50%);
   width: 80%;
   max-width: 600px;
-  z-index: 1000;
   background: white;
   border-radius: 48px;
   padding: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 #search-bar {
   width: 80%;
@@ -32,9 +33,46 @@ html {
   font-size: 16px;
 }
 
+.imhere {
+  position: absolute;
+  top: 90px;
+  left: 15px;
+  /* transform: translateX(-80%); */
+  background-color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.custom-marker {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
 .card {
   display: none;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
+.card button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
 .map {
   position: absolute;
   background-color: red;
