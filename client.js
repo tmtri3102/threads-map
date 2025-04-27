@@ -23,8 +23,8 @@ function locateMe() {
 
 // Custom marker
 const customIcon = L.icon({
-  iconUrl: "icon.svg",
-  iconSize: [36, 36], // width, height in pixels
+  iconUrl: "icon_2.svg",
+  iconSize: [28, 28], // width, height in pixels
   iconAnchor: [16, 32], // point of the icon which corresponds to marker's location
   popupAnchor: [0, -32], // point from which the popup should open relative to iconAnchor
   className: "custom-marker",
@@ -42,10 +42,15 @@ fetch("/api/locations")
   })
   .then((locationsData) => {
     locationsData.forEach((loc) => {
-      let marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(
-        map
-      );
-      marker.on("click", function () {
+      let marker = L.marker([loc.lat, loc.lng], { icon: customIcon })
+        .addTo(map)
+        .bindTooltip(loc.title, {
+          permanent: true,
+          direction: "right",
+          offset: [4, -18],
+          className: "marker-label",
+        });
+      marker.on("click ", function () {
         const card = document.getElementById("card");
         card.style.display = "flex"; // Show the card
         card.innerHTML = `
@@ -55,8 +60,10 @@ fetch("/api/locations")
               <div class="card-content">
                 <p id="thread-text">Loading content...</p>
                 <div class="card-buttons">
-                  <button>Button 1</button>
-                  <button>Button 2</button>
+                  <a id="read-more" href="#" target="_blank">
+                    Đọc thêm
+                    <img src="threads_logo.svg" alt="threads_logo" />
+                  </a>
                 </div>
               </div>
             <div id="close-card">✖</div>
@@ -95,17 +102,31 @@ fetch("/api/locations")
               ) {
                 mediaHtml = `<video><source src="${threadData.media_url}" type="video/mp4">Video not supported.</video>`;
               }
-              if (threadData.text.length > 70) {
-                threadText.textContent = threadData.text.slice(0, 70) + "...";
+
+              // Update thread text
+              if (threadData.text.length > 80) {
+                threadText.textContent = threadData.text.slice(0, 80) + "...";
               } else {
                 threadText.textContent = threadData.text;
               }
+
+              // Update media content
               const cardMedia = document.querySelector(".card-media");
               if (mediaHtml) {
                 const cardMedia = document.querySelector(".card-media");
                 if (cardMedia) {
                   cardMedia.innerHTML = mediaHtml;
                 }
+              }
+
+              // Create and append the "Đọc thêm" button
+              const cardButtons = document.querySelector(".card-buttons");
+              if (cardButtons) {
+                cardButtons.innerHTML = `
+                  <a id="read-more" href="${threadData.permalink}" target="_blank">
+                    Đọc thêm
+                    <img src="threads_logo.svg" alt="threads_logo" />
+                  </a>`;
               }
             })
             .catch((error) => {
