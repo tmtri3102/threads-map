@@ -93,15 +93,21 @@ html {
 }
 .card-content {
   flex: 1;
-  padding: 28px;
+  padding: 20px 28px;
   display: flex;
   flex-direction: column;
+}
+#title {
+  font-size: 12px;
+  color: #4d4d4d;
+  font-weight: bold;
+  margin: 0px 0px 8px 0px;
 }
 #thread-text {
   font-size: 16px;
   color: #333;
   font-style: italic;
-  margin-bottom: 12px;
+  margin: 0px 0px 12px 0px;
 }
 .card button {
   border: none;
@@ -142,7 +148,6 @@ html {
 
 .map {
   position: absolute;
-  background-color: red;
   top: 0;
   left: 0;
   right: 0;

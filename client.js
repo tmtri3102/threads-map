@@ -1,9 +1,9 @@
-const map = L.map("map").setView([21.0285, 105.8542], 15); // lat, lng, zoom
+const map = L.map("map").setView([21.0285, 105.8542], 14); // lat, lng, zoom
 
 // Tile layer
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-  minZoom: 15,
+  maxZoom: 20,
+  minZoom: 12,
   attribution: "&copy; OpenStreetMap contributors",
 }).addTo(map);
 
@@ -42,14 +42,15 @@ fetch("/api/locations")
   })
   .then((locationsData) => {
     locationsData.forEach((loc) => {
-      let marker = L.marker([loc.lat, loc.lng], { icon: customIcon })
-        .addTo(map)
-        .bindTooltip(loc.title, {
-          permanent: true,
-          direction: "right",
-          offset: [4, -18],
-          className: "marker-label",
-        });
+      let marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(
+        map
+      );
+      // .bindTooltip(loc.title, {
+      //   permanent: true,
+      //   direction: "right",
+      //   offset: [4, -18],
+      //   className: "marker-label",
+      // });
       marker.on("click ", function () {
         const card = document.getElementById("card");
         card.style.display = "flex"; // Show the card
@@ -58,6 +59,7 @@ fetch("/api/locations")
                 <img src="sample.jpg" />
               </div>
               <div class="card-content">
+                <p id="title">${loc.title}</p>
                 <p id="thread-text">Loading content...</p>
                 <div class="card-buttons">
                   <a id="read-more" href="#" target="_blank">
