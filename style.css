@@ -25,8 +25,7 @@ html {
   z-index: 1000;
 }
 #search-bar {
-  width: 80%;
-  /* height: 100%; */
+  width: 90%;
   border: none;
   outline: none;
   padding: 10px;
@@ -37,7 +36,6 @@ html {
   position: absolute;
   top: 90px;
   left: 15px;
-  /* transform: translateX(-80%); */
   background-color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -58,12 +56,43 @@ html {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
+  height: 170px;
   max-width: 600px;
   background-color: white;
   border-radius: 16px;
-  padding: 20px;
+  overflow: hidden;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+}
+
+.card-media {
+  width: 300px;
+  overflow: hidden;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card-content {
+  flex: 1;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#thread-text {
+  font-size: 16px;
+  color: #333;
+  font-style: italic;
+  margin: 0;
 }
 .card button {
   margin-top: 10px;
@@ -71,6 +100,22 @@ html {
   border: none;
   cursor: pointer;
   color: white;
+}
+#close-card {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 12px;
 }
 
 .map {
